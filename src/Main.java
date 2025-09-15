@@ -57,6 +57,22 @@ public class Main {
 
                     break;
                 case 3:
+                    for (int i = 0; i < pedidos.size(); i++){
+                        Pedido p = pedidos.get(i);
+                        System.out.println("Número do pedido: " + p.getId());
+                        System.out.println("Nome do cliente: " + p.getNome_cliente());
+                        System.out.println("Lista de itens:");
+                        double totalPedido = 0;
+                        Item[] itensPedido = p.getItens();
+                        for (int j = 0; j < itensPedido.length; j++) {
+                            Item item = itensPedido[j];
+                            System.out.println("  - " + item.getNome() + ": R$ " + item.getPreco());
+                            totalPedido += item.getPreco();
+                        }
+                        System.out.printf("Total do pedido: R$ %.2f%n", totalPedido);
+                        System.out.println("-----------------------------------");
+                    }
+
                     System.out.println("Listar pedidos");
                     break;
                 case 4:
