@@ -3,10 +3,17 @@ public class Pedido {
     private String nome_cliente;
     private Item[] itens;
 
+    private static int contador = 0;
+
+    public Pedido(String nome_cliente, Item[] itens) {
+        this.nome_cliente = nome_cliente;
+        this.itens = itens;
+        this.id = ++contador;
+    }
+
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }

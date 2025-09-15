@@ -19,8 +19,25 @@ public class Main {
             System.out.print("Escolha uma opção: ");
             switch (sc.nextInt()){
                 case 1:
-                    System.out.println("Registrar pedido");
+                    System.out.print("Insira o nome do cliente ");
+                    String nome_cliente = sc.next();
+                    System.out.print("Insira a quantidade de itens que quer adicionar ao pedido: ");
+                    int qtd = sc.nextInt();
+                    Item[] itens = new Item[qtd];
+                    for (int i = 0; i < qtd; i++) {
+                        Item item = new Item();
+                        System.out.print("Insira o nome do item " + (i + 1) + ": ");
+                        item.setNome(sc.next());
+                        System.out.print("Insira o preço do item " + (i + 1) + ": ");
+                        item.setPreco(sc.nextDouble());
+                        itens[i] = item;
+                    }
+
+                    Pedido pedido = new Pedido(nome_cliente, itens);
+                    pedidos.add(pedido);
+                    System.out.println("Pedido registrado com sucesso!");
                     break;
+
                 case 2:
                     System.out.println("Remover pedido");
                     break;
