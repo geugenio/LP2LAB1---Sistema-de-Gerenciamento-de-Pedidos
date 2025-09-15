@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("+==============================================+");
@@ -17,25 +19,45 @@ public class Main {
             System.out.println("3 - Listar pedidos");
             System.out.println("4 - Sair");
             System.out.print("Escolha uma opção: ");
-            switch (sc.nextInt()){
+            int opc = sc.nextInt();
+            sc.nextLine();
+            switch (opc){
                 case 1:
-                    System.out.print("Insira o nome do cliente ");
-                    String nome_cliente = sc.next();
+                    System.out.print("Insira o nome do cliente: ");
+                    String nome_cliente = sc.nextLine();
                     System.out.print("Insira a quantidade de itens que quer adicionar ao pedido: ");
                     int qtd = sc.nextInt();
+                    sc.nextLine();
                     Item[] itens = new Item[qtd];
                     for (int i = 0; i < qtd; i++) {
                         Item item = new Item();
                         System.out.print("Insira o nome do item " + (i + 1) + ": ");
-                        item.setNome(sc.next());
+                        item.setNome(sc.nextLine());
                         System.out.print("Insira o preço do item " + (i + 1) + ": ");
                         item.setPreco(sc.nextDouble());
+                        sc.nextLine();
                         itens[i] = item;
                     }
 
                     Pedido pedido = new Pedido(nome_cliente, itens);
                     pedidos.add(pedido);
-                    System.out.println("Pedido registrado com sucesso!");
+                    System.out.println("\n========================================");
+                    System.out.println("|  Restaurante Java's Food              | ");
+                    System.out.println("========================================");
+                    System.out.println("Pedido N°: " + pedido.getId());
+                    System.out.println("Cliente: " + nome_cliente);
+                    System.out.println("----------------------------------------");
+                    System.out.println("Itens:");
+                    for (Item item : itens) {
+                        System.out.println("- " + item.getNome() + " R$ " + item.getPreco());
+                    }
+
+                    System.out.println("----------------------------------------");
+                    System.out.println("Total: R$ " + pedido.calcularValorTotal());
+                    System.out.println("========================================");
+                    System.out.println(" Obrigado pela preferência! :) ");
+                    System.out.println("========================================\n");
+
                     break;
 
                 case 2:
@@ -62,14 +84,12 @@ public class Main {
                         System.out.println("Número do pedido: " + p.getId());
                         System.out.println("Nome do cliente: " + p.getNome_cliente());
                         System.out.println("Lista de itens:");
-                        double totalPedido = 0;
                         Item[] itensPedido = p.getItens();
                         for (int j = 0; j < itensPedido.length; j++) {
                             Item item = itensPedido[j];
                             System.out.println("  - " + item.getNome() + ": R$ " + item.getPreco());
-                            totalPedido += item.getPreco();
                         }
-                        System.out.printf("Total do pedido: R$ %.2f%n", totalPedido);
+                        System.out.printf("Total do pedido: R$ %.2f%n", p.calcularValorTotal());
                         System.out.println("-----------------------------------");
                     }
 
@@ -83,5 +103,10 @@ public class Main {
                     System.out.println("Opção inválida. Tente novamente.");
             }
         } while(ativo);
+
+
+
+        sc.close();
     }
 }
+

@@ -11,6 +11,14 @@ public class Pedido {
         this.id = ++contador;
     }
 
+    public double calcularValorTotal(){
+        double total = 0;
+        for (Item item: itens){
+            total += item.getPreco();
+        }
+        return total;
+    }
+
     public int getId() {
         return id;
     }
