@@ -39,7 +39,22 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.println("Remover pedido");
+                    System.out.print("Insira o numero de identificação do pedido que deseja remover: ");
+                    int id = sc.nextInt();
+                    boolean encontrado = false;
+
+                    for (int i = 0; i < pedidos.size(); i++) {
+                        if (pedidos.get(i).getId() == id) {
+                            pedidos.remove(i);
+                            System.out.println("Pedido removido com sucesso!");
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        System.out.println("Pedido não encontrado.");
+                    }
+
                     break;
                 case 3:
                     System.out.println("Listar pedidos");
