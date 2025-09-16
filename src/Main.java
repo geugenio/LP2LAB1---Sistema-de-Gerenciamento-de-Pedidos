@@ -28,7 +28,7 @@ public class Main {
                     System.out.print("Insira a quantidade de itens que quer adicionar ao pedido: ");
                     int qtd = sc.nextInt();
                     sc.nextLine();
-                    Item[] itens = new Item[qtd];
+                    ArrayList<Item> itens = new ArrayList<Item>();
                     for (int i = 0; i < qtd; i++) {
                         Item item = new Item();
                         System.out.print("Insira o nome do item " + (i + 1) + ": ");
@@ -36,7 +36,7 @@ public class Main {
                         System.out.print("Insira o preço do item " + (i + 1) + ": ");
                         item.setPreco(sc.nextDouble());
                         sc.nextLine();
-                        itens[i] = item;
+                        itens.add(item);
                     }
 
                     Pedido pedido = new Pedido(nome_cliente, itens);
@@ -61,6 +61,10 @@ public class Main {
                     break;
 
                 case 2:
+                    if(pedidos.isEmpty()){
+                        System.out.println("Nenhum pedido registrado.");
+                        break;
+                    }
                     System.out.print("Insira o numero de identificação do pedido que deseja remover: ");
                     int id = sc.nextInt();
                     boolean encontrado = false;
@@ -84,19 +88,17 @@ public class Main {
                         System.out.println("Número do pedido: " + p.getId());
                         System.out.println("Nome do cliente: " + p.getNome_cliente());
                         System.out.println("Lista de itens:");
-                        Item[] itensPedido = p.getItens();
-                        for (int j = 0; j < itensPedido.length; j++) {
-                            Item item = itensPedido[j];
+                        ArrayList<Item> itensPedido = p.getItens();
+                        for (int j = 0; j < itensPedido.size(); j++) {
+                            Item item = itensPedido.get(j);
                             System.out.println("  - " + item.getNome() + ": R$ " + item.getPreco());
                         }
                         System.out.printf("Total do pedido: R$ %.2f%n", p.calcularValorTotal());
                         System.out.println("-----------------------------------");
                     }
-
-                    System.out.println("Listar pedidos");
                     break;
                 case 4:
-                    System.out.println("Sair");
+                    System.out.println("Encerrando o sistema...");
                     ativo = false;
                     break;
                 default:

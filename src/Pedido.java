@@ -1,11 +1,13 @@
+import java.util.ArrayList;
+
 public class Pedido {
     private int id;
     private String nome_cliente;
-    private Item[] itens;
+    private ArrayList<Item> itens;
 
     private static int contador = 0;
 
-    public Pedido(String nome_cliente, Item[] itens) {
+    public Pedido(String nome_cliente, ArrayList<Item> itens) {
         this.nome_cliente = nome_cliente;
         this.itens = itens;
         this.id = ++contador;
@@ -34,11 +36,11 @@ public class Pedido {
         this.nome_cliente = nome_cliente;
     }
 
-    public Item[] getItens() {
+    public ArrayList<Item> getItens() {
         return itens;
     }
 
-    public void setItens(Item[] itens) {
+    public void setItens(ArrayList<Item> itens) {
         this.itens = itens;
     }
 }
